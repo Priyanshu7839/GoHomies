@@ -45,14 +45,17 @@
 }
 .container1 .item:nth-child(3){
     right: calc(80px + 20px);
-    /* opacity: 0; */
+    opacity: 0;
 }
 .container1 .item:nth-child(4){
     right: calc(40px + 20px);
+    opacity: 0;
+
 }
 
 .container1 .item:nth-child(5){
     right: 20px;
+    opacity: 0;
 }
     
 .container1 .item:nth-child(n+6){
@@ -62,24 +65,23 @@
    
 .container1 .item .content{
     position: absolute;
-    top: 30%;
-    left: 120px;
-    width: 300px;
-    text-align: left;
+    top: 50%;
+    left: 50%;
+    text-align: center;
     padding: 0;
     color: #eee;
-    transform: translate(0,-50%);
-    display: none;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transform: translate(-50%,-50%);
 }
 
 .container1 .item:nth-child(2) .content{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
     z-index: 11111;
 }
 
 .container1 .item .name{
-    font-size: 40px;
+    font-size: 3rem;
     font-weight: bold;
     opacity: 0;
     animation: showcontent 1s ease-in-out 1 forwards;
