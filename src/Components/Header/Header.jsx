@@ -28,36 +28,46 @@ const Header = () => {
             <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew1})` }}>
                 <div className="content">
                     <div className="name">Lorem, ipsum.</div>
+                    <div className='flex flex-col gap-[0rem] '>
                     <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See More</button>
+                    <button>See Mor</button>
+                    </div>
                 </div>
             </div>
             <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew1})` }}>
                 <div className="content">
                     <div className="name">Lorem, ipsum.</div>
+                    <div className='flex flex-col gap-[.5rem] '>
                     <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
                     <button>See More</button>
+                    </div>
                 </div>
             </div>
             <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
                 <div className="content">
                     <div className="name">Lorem, ipsum.</div>
+                    <div className='flex flex-col gap-[.5rem]'>
                     <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
                     <button>See More</button>
+                    </div>
                 </div>
             </div>
             <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
                 <div className="content">
                     <div className="name">Lorem, ipsum.</div>
+                    <div className='flex flex-col gap-[.5rem]'>
                     <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
                     <button>See More</button>
+                    </div>
                 </div>
             </div>
             <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
                 <div className="content">
                     <div className="name">Lorem, ipsum.</div>
+                    <div className='flex flex-col gap-[.5rem]'>
                     <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
                     <button>See More</button>
+                    </div>
                 </div>
             </div>
         </div>
