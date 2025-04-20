@@ -5,7 +5,7 @@ const Navbar = () => {
   const breakpoint = useScreenResizeValue();
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center sticky top-0 bg-white relative z-1000">
       <div
         className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
             flex flex-col items-center justify-center  overflow-hidden 

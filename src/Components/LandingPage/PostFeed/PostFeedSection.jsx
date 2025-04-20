@@ -7,10 +7,10 @@ const PostFeedSection = () => {
     const breakpoint = useScreenResizeValue();
 
   return (
-    <div className="flex relative  items-center justify-center overflow-hidden w-full">
+    <div className="flex relative  items-center justify-center w-full">
     <div
       className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
-          flex flex-col  items-center justify-between gap-[2rem]  py-[4rem]     overflow-hidden 
+          flex flex-col  items-center justify-between gap-[2rem]  py-[4rem] 
           `}
     >
 
@@ -26,10 +26,12 @@ const PostFeedSection = () => {
                         View Feed and posts and get info about the latest trips and experience of homies
                         </p>
                 </div>
-        <div className='flex items-start justify-between w-full gap-[1rem] h-[100vh]'>
+                <div className="!relative">
+        <div className='!sticky !top-[145px] !h-[calc(100vh-145px)] flex items-start justify-between w-full gap-[3rem]'>
             <PostFeedLeft/>
             <PostFeedCenter/>
             <PostFeedRight/>
+            </div>
         
         </div>
 
