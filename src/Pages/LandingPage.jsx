@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header, Navbar, PostCreationSection, PostFeedSection, TopPackages } from '../Components'
+import Feed from '../Components/Feed/Feed'
 
 const LandingPage = () => {
   return (
@@ -9,6 +10,7 @@ const LandingPage = () => {
         {/* <TopPackages/> */}
         <PostCreationSection/>
         <PostFeedSection/>
+        {/* <Feed/> */}
     </div>
   )
 }
