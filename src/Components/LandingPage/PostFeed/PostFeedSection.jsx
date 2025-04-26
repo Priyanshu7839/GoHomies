@@ -23,8 +23,8 @@ const PostFeedSection = () => {
 
   return (
     <div className="flex relative  items-center justify-center w-full">
-    <div
-      className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
+      <div
+        className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
           flex flex-col  items-center justify-between gap-[2rem]  py-[4rem] 
           `}
     >
@@ -49,11 +49,9 @@ const PostFeedSection = () => {
             </div>
         
         </div>
-
-
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostFeedSection
+export default PostFeedSection;

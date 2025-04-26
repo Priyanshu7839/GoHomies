@@ -28,6 +28,7 @@
     margin-bottom: 8px;
     font-size: 14px;
     color: #000;
+    font-weight: 400;
   }
   
   .input-wrapper {
@@ -35,9 +36,9 @@
     align-items: center;
     background-color: #fff;
     padding: 14px 10px;
-    border-radius: 12px;
+    border-radius: 22px;
     border: 1px solid #e0e0e0;
-
+    
   }
   
   .input-wrapper input {
@@ -47,6 +48,17 @@
     outline: none;
     color: black;
     font-size: 14px;
+
+  }
+
+  .input-wrapper textarea{
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 14px;
+    resize: none;
   }
   
   

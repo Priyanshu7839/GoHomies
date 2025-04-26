@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+// import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import { toggleButtonClasses } from '@mui/material/ToggleButton';
@@ -332,11 +332,11 @@ export const inputsCustomizations = {
         '&:hover': {
           borderColor: brand[300],
         },
-        '&.Mui-focusVisible': {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          outlineOffset: '2px',
-          borderColor: brand[400],
-        },
+        // '&.Mui-focusVisible': {
+        //   outline: `3px solid ${alpha(brand[500], 0.5)}`,
+        //   outlineOffset: '2px',
+        //   borderColor: brand[400],
+        // },
         '&.Mui-checked': {
           color: 'white',
           backgroundColor: brand[500],
@@ -353,11 +353,11 @@ export const inputsCustomizations = {
           '&:hover': {
             borderColor: brand[300],
           },
-          '&.Mui-focusVisible': {
-            borderColor: brand[400],
-            outline: `3px solid ${alpha(brand[500], 0.5)}`,
-            outlineOffset: '2px',
-          },
+          // '&.Mui-focusVisible': {
+          //   borderColor: brand[400],
+          //   outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          //   outlineOffset: '2px',
+          // },
         }),
       }),
     },

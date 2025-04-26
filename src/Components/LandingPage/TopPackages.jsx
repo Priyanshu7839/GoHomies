@@ -70,7 +70,7 @@ const TopPackages = () => {
     <div className="flex  items-center justify-center overflow-hidden w-full">
       <div
         className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
-            flex flex-col items-center justify-center gap-[2rem]  py-[4rem]     overflow-hidden 
+            flex flex-col items-center justify-center gap-[2rem]  py-[3rem]     overflow-hidden 
             `}
       >
                 <div className="flex flex-col items-center justify-center">
