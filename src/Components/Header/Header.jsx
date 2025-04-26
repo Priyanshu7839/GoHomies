@@ -1,81 +1,103 @@
-import React,{useRef} from 'react'
-import HeaderBannerNew1 from '../../assets/HeaderImage.jpg'
-import HeaderBannerNew2 from '../../assets/HeaderImage1.jpg'
+// import React,{useRef} from 'react'
+import HeaderBannerNew1 from "../../assets/HeaderImage.jpg";
+import HeaderBannerNew2 from "../../assets/HeaderImage1.jpg";
 
-import './Header.css'
-import Navbar from '../Navbar/Navbar'
+import React, { useRef, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import "./Header.css";
+
+const images = [
+  {
+    src: HeaderBannerNew1,
+    title: "Kerala",
+    desc: "Known as God Own Country, Kerala offers serene backwaters, lush greenery, exotic wildlife, and vibrant traditions. Its beaches, spice plantations, and houseboat cruises attract travelers seeking peace and beauty.",
+  },
+  {
+    src: HeaderBannerNew2,
+    title: "Manali",
+    desc: "Nestled in Himachal Pradesh, Manali is a charming hill station famous for snow-capped mountains, adventure sports, scenic valleys, and a cool, refreshing climate.",
+  },
+];
 
 const Header = () => {
-
- const slideRef = useRef(null);
+  const slideRef = useRef(null);
 
   const handleNext = () => {
-    const items = slideRef.current.querySelectorAll('.item');
-    if (items.length > 0) {
-      slideRef.current.appendChild(items[0]);
+    if (slideRef.current) {
+      const firstChild = slideRef.current.children[0];
+      slideRef.current.appendChild(firstChild);
     }
   };
 
- 
+  const handlePrev = () => {
+    if (slideRef.current) {
+      const lastChild =
+        slideRef.current.children[slideRef.current.children.length - 1];
+      slideRef.current.prepend(lastChild);
+    }
+  };
 
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 7000);
+    return () => clearInterval(interval);
+  }, []);
   return (
-   <div className='relative h-[600px]'>
-     <div className='container1'>
-        
-        <div id="slide" ref={slideRef}>
-            <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew1})` }}>
-                <div className="content">
-                    <div className="name">Lorem, ipsum.</div>
-                    <div className='flex flex-col gap-[0rem] '>
-                    <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See Mor</button>
-                    </div>
+    <div className="relative h-[calc(100vh-160px)] px-0 ">
+      <div className="relative overflow-hidden bg-black">
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black opacity-40 z-5"></div>
+
+        <div
+          ref={slideRef}
+          className="flex transition-all duration-700 ease-in-out"
+        >
+          {/* Image slides */}
+          {images.map((item, index) => (
+            <div
+              key={index}
+              className="min-w-full h-[calc(100vh-160px)] bg-cover bg-center flex items-center justify-start"
+              style={{ backgroundImage: `url(${item.src})` }}
+            >
+              <div className=" p-6 rounded-xl flex flex-col items-start gap-4 left-10 z-10 text-white max-w-xl text-left m-10">
+                <div className="text-[18px] text-[#f555a7]">
+                  #{index + 1} Spotlight
                 </div>
-            </div>
-            <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew1})` }}>
-                <div className="content">
-                    <div className="name">Lorem, ipsum.</div>
-                    <div className='flex flex-col gap-[.5rem] '>
-                    <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See More</button>
-                    </div>
+                <div className="text-5xl font-bold mb-4">{item.title}</div>
+                <div className="mb-6 text-[16px]">{item.desc}</div>
+                <div>
+                  <button className="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full text-white">
+                    Explore Packages
+                  </button>
                 </div>
+              </div>
             </div>
-            <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
-                <div className="content">
-                    <div className="name">Lorem, ipsum.</div>
-                    <div className='flex flex-col gap-[.5rem]'>
-                    <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See More</button>
-                    </div>
-                </div>
-            </div>
-            <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
-                <div className="content">
-                    <div className="name">Lorem, ipsum.</div>
-                    <div className='flex flex-col gap-[.5rem]'>
-                    <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See More</button>
-                    </div>
-                </div>
-            </div>
-            <div className="item" onClick={handleNext} style={{ backgroundImage: `url(${HeaderBannerNew2})` }}>
-                <div className="content">
-                    <div className="name">Lorem, ipsum.</div>
-                    <div className='flex flex-col gap-[.5rem]'>
-                    <div className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, odio.</div>
-                    <button>See More</button>
-                    </div>
-                </div>
-            </div>
+          ))}
         </div>
 
-        
-    </div>
-   </div>
-  )
-}
+        {/* Gradient Fade at Bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fff] to-transparent z-10" />
 
-export default Header
+        {/* Navigation Buttons */}
+        <div className="flex flex-col absolute bottom-8 right-8 gap-2 z-20">
+          <button
+            className="bg-black opacity-70 rounded-md p-2"
+            onClick={handlePrev}
+          >
+            <ChevronLeft color="white" size={24} />
+          </button>
+          <button
+            className="bg-black opacity-70 rounded-md p-2"
+            onClick={handleNext}
+          >
+            <ChevronRight color="white" size={24} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
