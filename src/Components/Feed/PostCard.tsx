@@ -28,13 +28,13 @@ const PostCard = ( props) => {
           <p className='text-[12px]'>•</p>
           <p>{props.stats.comments} Comments</p>
         </div>
-        <div className='px-6 py-3 flex items-center gap-3'>
+        {/* <div className='px-6 py-3 flex items-center gap-3'>
           <p className='flex gap-2 items-center justify-center'>
           {props.stats.reposts} Reposts
           </p>
           <p className='text-[12px]'>•</p>
           <p>{props.stats.views} Views</p>
-        </div>
+        </div> */}
         
       </div>
       <div className='flex justify-center false  max-h-[56px] gap-[8px] items-center p-[8px]'>

@@ -7,7 +7,7 @@ const LandingPage = () => {
     <div>
         <Navbar/>
         <Header/>
-        {/* <TopPackages/> */}
+        <TopPackages/>
         <PostCreationSection/>
         <PostFeedSection/>
         {/* <Feed/> */}
