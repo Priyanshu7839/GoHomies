@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../../Feed/PostCard";
 import mockPosts from "../../Feed/mockPost";
 
-const PostFeedCenter = () => {
+const PostFeedCenter = ({className}) => {
   const [userPosts, setUserPosts] = useState([]);
 
   const fetchUserPosts = () => {
@@ -46,7 +46,7 @@ const PostFeedCenter = () => {
   const allPosts = [...userPosts, ...mockPosts];
 
   return (
-    <div className="overflow-auto custom-scrollbar-hide h-[calc(100vh-145px)]">
+    <div className={`${className} custom-scrollbar-hide h-[calc(100vh-80px)]`}>
       <div className="space-y-4">
         {allPosts.map((post, index) => (
           <PostCard

@@ -86,7 +86,7 @@ const PostCreationSection = () => {
   };
 
   return (
-    <div className="flex items-center justify-center overflow-hidden w-full">
+    <div className="flex items-center justify-center overflow-hidden w-full h-[100vh]">
       <div
         className={`${
           breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"
