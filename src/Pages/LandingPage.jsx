@@ -4,7 +4,7 @@ import Feed from '../Components/Feed/Feed'
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className='flex flex-col gap-0'>
         <Navbar/>
         <Header/>
         <TopPackages/>

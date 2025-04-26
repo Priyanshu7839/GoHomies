@@ -1,11 +1,33 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useScreenResizeValue } from "../../ScreenSizeFunction";
 
 const Navbar = () => {
   const breakpoint = useScreenResizeValue();
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="flex items-center justify-center sticky top-0 bg-white relative z-1000">
+    <div
+      className={`flex items-center justify-center w-full ${
+        isSticky
+          ? "fixed top-0 bg-[rgba(15,11,11,0.8)]"
+          : "absolute top-0 bg-[rgba(15,11,11,0)]"
+      } z-50 transition-all duration-500 ease-in-out`}
+    >
       <div
         className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
             flex flex-col items-center justify-center  overflow-hidden 
@@ -66,19 +88,19 @@ const Navbar = () => {
             <div>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#060318] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
               >
                 Explore
               </a>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#060318] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
               >
                 Booking
               </a>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#060318] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
               >
                 Blogs
               </a>
@@ -86,7 +108,7 @@ const Navbar = () => {
           </div>
           <div>
             <div className="flex flex-row items-center justify-center gap-[12px] max-w-[200px]">
-              <div className=" cursor-pointer whitespace-nowrap h-full  w-full">
+              <div className=" cursor-pointer whitespace-nowrap h-full text-[#d7d7d8]  w-full">
                 Sign Up
               </div>
               <div className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.5rem] rounded-full text-[#ffffff]">
