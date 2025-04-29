@@ -4,11 +4,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import SignIn from './sign-in/SignIn.tsx';
 import LandingPage from './Pages/LandingPage.jsx';
+import { BrowserRouter } from 'react-router';
+import Routers from './Routes'
 
 export default function App() {
   return (
-   <div>
-      <LandingPage/>
-   </div>
+   <BrowserRouter>
+    <Routers/>
+   </BrowserRouter>
   );
 }

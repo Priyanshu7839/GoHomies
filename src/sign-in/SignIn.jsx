@@ -17,6 +17,10 @@ import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { UserSignIn } from '../../ApiCall';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../Store/UserDataSlice';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -75,16 +79,47 @@ export default function SignIn(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = async(event) => {
+    event.preventDefault();
     if (emailError || passwordError) {
-      event.preventDefault();
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    const email= data.get('email')
+    const password=data.get('password')
+
+   const response = await UserSignIn(email,password)
+
+   if(response && response.data){
+     if(response.data.msg === 'Logged In'){
+      const user = response.data.user
+      dispatch(setUserData({
+        name:user?.name,
+        email:user?.email,
+        about:user?.about,
+        designation:user?.designation,
+        title:user?.title,
+        isAuthenticated:true,
+        username:user?.username
+
+      }))
+      navigate('/')
+
+     }
+     else{
+      setPasswordError(true);
+      setPasswordErrorMessage(response.data.msg)
+     }
+   }
+    
   };
 
   const validateInputs = () => {
@@ -120,13 +155,13 @@ export default function SignIn(props) {
       <SignInContainer direction="column" justifyContent="space-between">
         <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
         <Card variant="outlined">
-          <SitemarkIcon />
+          {/* <SitemarkIcon /> */}
           <Typography
             component="h1"
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign in
+            GoHomies
           </Typography>
           <Box
             component="form"
@@ -173,10 +208,10 @@ export default function SignIn(props) {
                 color={passwordError ? 'error' : 'primary'}
               />
             </FormControl>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
               type="submit"

@@ -29,7 +29,6 @@ const TopPackages = () => {
     
     preloadImages(images)
       .then(() => {
-        console.log("✅ All images loaded!");
         setImagesLoaded(true);
       })
       .catch((error) => {

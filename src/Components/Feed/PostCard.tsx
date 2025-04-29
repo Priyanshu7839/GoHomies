@@ -5,28 +5,42 @@ const PostCard = ( props) => {
     <div className={`max-w-[616px] sm:w-[616px] flex-shrink gap-[16px] rounded-3xl bg-white flex flex-col border border-[#d7d7d8] h-full max-h-fit pt-[16px]  `}>
     <div className='px-[24px] flex  items-center'>
       <div className="pl-2 lg:pl-0 rounded-[20px] shrink-0">
-        <img className='rounded-[50px]' width={50} height={50} src={props.user.profilePic}/>
+       {props?.user?.profilePic &&
+        <img className='rounded-[50px]' width={50} height={50} src={props.user.profilePic}/>}
       </div>
       <div className='w-10/12 lg:w-full gap-[1px] lg:grow pl-2 lg:pl-4 min-h-16 lg:flex flex-col hidden'>
         <p className='text-[16px] font-bold text-tertiary-750'>{props.user.name}</p>
-        <p className='lg:text-sm text-[11px] text-tertiary-900 w-full lg:block hidden'>{props.user.title}</p>
-        <p className="lg:text-xs flex items-center gap-[8px] text-[11px] w-full text-tertiary-950 truncate  "><a className="hover:text-tertiaryBlue-600 font-normal text-tertiary-950 " href="/forum/accounting">{props.user.occupation}<span>&nbsp;</span></a><div><svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.01342 4.5C1.40492 4.5 0.912752 4.31081 0.536913 3.93243C0.178971 3.55405 0 3.06757 0 2.47297C0 1.8964 0.178971 1.42793 0.536913 1.06757C0.912752 0.689189 1.40492 0.5 2.01342 0.5C2.63982 0.5 3.12304 0.689189 3.46309 1.06757C3.82103 1.42793 4 1.8964 4 2.47297C4 3.06757 3.82103 3.55405 3.46309 3.93243C3.12304 4.31081 2.63982 4.5 2.01342 4.5Z" fill="#57585C" ></path></svg>
-        </div>{props.user.time}</p>
+        {props?.user?.title &&
+          <p className='lg:text-sm text-[11px] text-tertiary-900 w-full lg:block hidden'>{props.user.title}</p>}
+      { props?.user?.designation &&
+        <p className="lg:text-xs flex items-center gap-[8px] text-[11px] w-full text-tertiary-950 truncate  "><a className="hover:text-tertiaryBlue-600 font-normal text-tertiary-950 " href="/forum/accounting">{props.user.designation}<span>&nbsp;</span></a><div><svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.01342 4.5C1.40492 4.5 0.912752 4.31081 0.536913 3.93243C0.178971 3.55405 0 3.06757 0 2.47297C0 1.8964 0.178971 1.42793 0.536913 1.06757C0.912752 0.689189 1.40492 0.5 2.01342 0.5C2.63982 0.5 3.12304 0.689189 3.46309 1.06757C3.82103 1.42793 4 1.8964 4 2.47297C4 3.06757 3.82103 3.55405 3.46309 3.93243C3.12304 4.31081 2.63982 4.5 2.01342 4.5Z" fill="#57585C" ></path></svg>
+        </div>
+        {/* {props.user.time} */}
+        </p>}
       </div>
       <div className="flex justify-center"><div className="relative"><button className="hover:bg-[#d7d7d8] cursor-pointer rounded-md lg:py-1" aria-label="Options menu" id="headlessui-menu-button-46" type="button" aria-haspopup="true" aria-expanded="false"><div><svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.0002 11.9166C11.5064 11.9166 11.9168 11.5062 11.9168 10.9999C11.9168 10.4937 11.5064 10.0833 11.0002 10.0833C10.4939 10.0833 10.0835 10.4937 10.0835 10.9999C10.0835 11.5062 10.4939 11.9166 11.0002 11.9166Z" stroke="#5F5F5F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ></path><path d="M11.0002 5.50008C11.5064 5.50008 11.9168 5.08968 11.9168 4.58341C11.9168 4.07715 11.5064 3.66675 11.0002 3.66675C10.4939 3.66675 10.0835 4.07715 10.0835 4.58341C10.0835 5.08968 10.4939 5.50008 11.0002 5.50008Z" stroke="#5F5F5F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M11.0002 18.3333C11.5064 18.3333 11.9168 17.9229 11.9168 17.4167C11.9168 16.9104 11.5064 16.5 11.0002 16.5C10.4939 16.5 10.0835 16.9104 10.0835 17.4167C10.0835 17.9229 10.4939 18.3333 11.0002 18.3333Z" stroke="#5F5F5F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ></path></svg></div></button></div></div>
     </div>
-    <div className='px-8 gap-[10px]'>
-    {props.postContent}
+    <div className='px-8 flex flex-col gap-[10px]'>
+    {props.desc}
+   <h1> {props.budget}</h1>
+   <h1> {props.TravelMonth}</h1>
+    <h1>{props.destination}</h1>
+   <h1> {props.totalPersons}</h1>
     </div>
     <div>
       <div className='flex justify-between border-t border-b border-[#d7d7d8]'>
         <div className='px-6 py-3 flex items-center gap-3'>
           <p className='flex gap-2 items-center justify-center'>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" ><rect width="16" height="16" rx="4" fill="#1660CD" ></rect><path fillRule="evenodd" clipRule="evenodd" d="M2 14V2H14V14H2Z" fill="#1660CD" ></path><path d="M6.19531 6.16535C6.19531 5.96535 6.25531 5.77035 6.36531 5.60535L7.68031 2.885C7.89531 2.56 8.43031 2.33 8.88531 2.5C9.37531 2.665 9.70031 3.215 9.59531 3.705C9.59531 3.705 9.07 5.38035 9.05 5.53035C9.03 5.68035 9.07 5.81535 9.155 5.92035C9.24 6.01535 9.365 6.07535 9.5 6.07535H11.8903C12.2853 6.07535 12.6253 6.23535 12.8253 6.51535C13.0153 6.78535 13.0503 7.13535 12.9253 7.49035L12 11.2454C11.845 11.8654 11.17 12.3704 10.5 12.3704H8.05C7.715 12.3704 7.245 12.2554 7.03 12.0404L6.39 11.5454C6.145 11.3604 6.19531 11.2454 6.19531 11.2454V6.16535Z" fill="#FFFFFF" ></path><path d="M3.59 5.68945C2.815 5.68945 2.5 5.98945 2.5 6.72945V10.7595C2.5 11.4995 2.815 11.7995 3.59 11.7995H4.605C5.38 11.7995 5.695 11.4995 5.695 10.7595V6.72945C5.695 5.98945 5.38 5.68945 4.605 5.68945H3.59Z" fill="#FFFFFF"></path></svg>
-            <p className='text-[12px]'>{props.stats.likes}</p>
+            <p className='text-[12px]'>
+              
+              {/* {props.stats.likes} */}
+              </p>
           </p>
           <p className='text-[12px]'>•</p>
-          <p>{props.stats.comments} Comments</p>
+          <p>
+            {/* {props.stats.comments}  */}
+            Comments</p>
         </div>
         {/* <div className='px-6 py-3 flex items-center gap-3'>
           <p className='flex gap-2 items-center justify-center'>
