@@ -1,9 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useScreenResizeValue } from "../../ScreenSizeFunction";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from 'js-cookie'
+import { setUserData } from "../../Store/UserDataSlice";
 
 const Navbar = () => {
   const breakpoint = useScreenResizeValue();
   const [isSticky, setIsSticky] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,9 +26,27 @@ const Navbar = () => {
     };
   }, []);
 
+  const navigate = useNavigate();
+
+  const userData = useSelector((state)=>state.UserData)
+
+  const Logout =()=>{
+    Cookies.remove('uid');
+    dispatch(setUserData({
+      name: '',
+      email: '',
+      username: '',
+      designation: '',
+      about: '',
+      title: '',
+      isAuthenticated: false,
+    }))
+  }
+ 
+
   return (
     <div
-      className={`flex items-center justify-center w-full ${
+      className={`flex items-center justify-center rounded-b-[12px] w-full ${
         isSticky
           ? "fixed top-0 bg-[rgba(15,11,11,0.8)]"
           : "absolute top-0 bg-[rgba(15,11,11,0)]"
@@ -33,7 +57,7 @@ const Navbar = () => {
             flex flex-col items-center justify-center  overflow-hidden 
             `}
       >
-        <div className="w-full py-[1rem] flex items-center max-h-[80px] !justify-between gap-[1rem]  ">
+        <div className="w-full py-[1rem] flex items-center max-h-[60px] !justify-between gap-[1rem]  ">
           <div className="flex flex-row  !gap-[48px] justify-between items-center">
             <div className="flex items-center justify-center ">
               <svg
@@ -85,36 +109,61 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
+          </div>
             <div>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
               >
                 Explore
               </a>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
               >
                 Booking
               </a>
               <a
                 href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[16px] !font-bold whitespace-nowrap"
+                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
               >
                 Blogs
               </a>
             </div>
-          </div>
           <div>
+           {!userData.isAuthenticated &&
             <div className="flex flex-row items-center justify-center gap-[12px] max-w-[200px]">
               <div className=" cursor-pointer whitespace-nowrap h-full text-[#d7d7d8]  w-full">
                 Sign Up
               </div>
-              <div className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.5rem] rounded-full text-[#ffffff]">
+              <div
+              onClick={()=>{
+                  navigate('/signin')
+              }}
+              className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.5rem] rounded-full text-[#ffffff]">
                 Log In
               </div>
-            </div>
+            </div>}
+
+            {
+              userData.isAuthenticated && 
+              <div className="flex items-center justify-center gap-[12px]">
+                <div className="font-medium text-[1rem] text-[#fff]">
+                {userData.name}
+              </div>
+              
+              <div
+              onClick={()=>{
+                  Logout()
+                  navigate('/signin')
+              }}
+              className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.5rem] rounded-full text-[#ffffff]"
+             
+              >
+               LogOut
+              </div>
+              </div>
+            }
           </div>
         </div>
       </div>

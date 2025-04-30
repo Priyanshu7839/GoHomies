@@ -3,14 +3,18 @@ import { Snackbar, Alert, Stack } from "@mui/material";
 import { useScreenResizeValue } from "../../ScreenSizeFunction";
 import "./PostCreationSection.css";
 import { isNumeric } from "../../../util/helper";
+import { CreatePost, FetchPost } from "../../../ApiCall";
+import { useDispatch } from "react-redux";
+import { setAllPosts } from "../../Store/AllPostsSlice";
 
 const PostCreationSection = () => {
   const breakpoint = useScreenResizeValue();
+  const dispatch = useDispatch();
 
   const [destination, setDestination] = useState("");
   const [totalPersons, setTotalPersons] = useState("");
-  const [travelMonth, setTravelMonth] = useState("");
-  const [budget, setBudget] = useState("");
+  const [TravelMonth, setTravelMonth] = useState("");
+  const [BudgetPerPerson, setBudgetPerPerson] = useState("");
   const [description, setDescription] = useState("");
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -20,15 +24,15 @@ const PostCreationSection = () => {
     if (
       destination.trim() &&
       totalPersons.trim() &&
-      travelMonth.trim() &&
-      budget.trim() &&
+      TravelMonth.trim() &&
+      BudgetPerPerson.trim() &&
       description.trim()
     ) {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
     }
-  }, [destination, totalPersons, travelMonth, budget, description]);
+  }, [destination, totalPersons, TravelMonth, BudgetPerPerson, description]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,11 +46,11 @@ const PostCreationSection = () => {
           setTotalPersons("");
         }
       }
-    } else if (name === "travelMonth") {
+    } else if (name === "TravelMonth") {
       setTravelMonth(value);
-    } else if (name === "budget") {
+    } else if (name === "BudgetPerPerson") {
       if (isNumeric(value)) {
-        setBudget(value);
+        setBudgetPerPerson(value);
       }
     } else if (name === "description") {
       setDescription(value);
@@ -54,39 +58,33 @@ const PostCreationSection = () => {
   };
 
 
-  const handleSubmit = () => {
-    const newPost = {
-      destination,
-      totalPersons,
-      travelMonth,
-      budget,
-      description,
-    };
+  const handleSubmit = async() => {
+    
 
-    // Get existing posts
-    const existingPosts = JSON.parse(localStorage.getItem("travel_posts")) || [];
+    const response = await CreatePost(destination,totalPersons,TravelMonth,BudgetPerPerson,description) 
+    if(response.data.msg === 'Post Created Successfully'){
+      window.dispatchEvent(new Event("postCreated"));
+      setOpenAlert(true);
+       const fetchData = async () => {
+            const response = await FetchPost();
+            if(response.status === 200){ 
+                dispatch(setAllPosts(response.data))
+             
+            }
+          };
+        
+          fetchData();
+    }
 
-    // Add new post at the beginning
-    const updatedPosts = [newPost, ...existingPosts];
-
-    // Save back to localStorage
-    localStorage.setItem("travel_posts", JSON.stringify(updatedPosts));
-
-    window.dispatchEvent(new Event("postCreated"));
-
-    // Show success alert
-    setOpenAlert(true);
-
-    // Reset form fields
     setDestination("");
     setTotalPersons("");
     setTravelMonth("");
-    setBudget("");
+    setBudgetPerPerson("");
     setDescription("");
   };
 
   return (
-    <div className="flex items-center justify-center overflow-hidden w-full">
+    <div className="flex items-center justify-center overflow-hidden w-full h-[100vh]">
       <div
         className={`${
           breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"
@@ -145,10 +143,10 @@ const PostCreationSection = () => {
                   <label>Month of Travelling</label>
                   <div className="input-wrapper">
                     <input
-                    name="travelMonth"
+                    name="TravelMonth"
                       type="text"
                       placeholder="e.g. April"
-                      value={travelMonth}
+                      value={TravelMonth}
                       onChange={handleChange}
                     />
                   </div>
@@ -156,13 +154,13 @@ const PostCreationSection = () => {
               </div>
 
               <div className="input-group">
-                <label>Per person Budget</label>
+                <label>Per person BudgetPerPerson</label>
                 <div className="input-wrapper">
                   <input
-                  name="budget"
+                  name="BudgetPerPerson"
                     type="text"
                     placeholder="e.g. 10,000"
-                    value={budget}
+                    value={BudgetPerPerson}
                     onChange={handleChange}
                   />
                 </div>

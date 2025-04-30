@@ -5,16 +5,21 @@ import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import theme from './theme';
 import './index.css'
+import { RouterProvider } from 'react-router';
+import Routers from './Routes'
+import {Store} from './Store/Store' 
+import { Provider } from 'react-redux';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <Provider store={Store}>
+      <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RouterProvider router={Routers}/>
+        </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 );

@@ -78,7 +78,7 @@ const Header = () => {
         </div>
 
         {/* Gradient Fade at Bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fff] to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fff] to-transparent z-10 " />
 
         {/* Navigation Buttons */}
         <div className="flex flex-col absolute bottom-8 right-8 gap-2 z-20">

@@ -1,58 +1,62 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "../../Feed/PostCard";
 import mockPosts from "../../Feed/mockPost";
+import { FetchPost } from "../../../../ApiCall";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllPosts } from "../../../Store/AllPostsSlice";
 
-const PostFeedCenter = () => {
-  const [userPosts, setUserPosts] = useState([]);
+const PostFeedCenter = ({className}) => {
 
-  const fetchUserPosts = () => {
-    const savedPosts = JSON.parse(localStorage.getItem("travel_posts")) || [];
-    const formattedUserPosts = savedPosts.map((post) => ({
-      user: {
-        name: "Ashutosh Bhadwa",
-        title: "Randi",
-        profilePic: "https://randomuser.me/api/portraits/women/68.jpg",
-        occupation: "Porn Star",
-        time: "5h",
-      },
-      postContent: `Destination: ${post.destination}, Description: ${post.description}, Total Persons: ${post.totalPersons}, Travel Month: ${post.travelMonth}, Budget: ${post.budget}`,
-      stats: {
-        likes: 7,
-        comments: 7,
-        reposts: 7,
-        views: 7,
-      },
-    }));
-
-    setUserPosts(formattedUserPosts);
-  };
+  
+   const dispatch = useDispatch();
+   const [responseShow,setresponseShow] = useState(false) 
 
   useEffect(() => {
-    fetchUserPosts(); // Initial fetch on page load
-
-    // 👇 Listen for new posts
-    const handlePostCreated = () => {
-      fetchUserPosts();
+    const fetchData = async () => {
+      const res = await FetchPost();
+      setresponseShow(res.data.msg === 'Not Logged In')
+      if(res.status === 200){
+        
+          dispatch(setAllPosts(res.data))
+          
+      }
+      
     };
-
-    window.addEventListener("postCreated", handlePostCreated);
-
-    // Cleanup when component unmounts
-    return () => {
-      window.removeEventListener("postCreated", handlePostCreated);
-    };
+  
+    fetchData();
   }, []);
+  
 
-  const allPosts = [...userPosts, ...mockPosts];
+
+
+
+
+
+  const AllPosts = useSelector((state)=>state.AllPosts);
+  if(responseShow){
+    return(
+      <div  className='border-[1px] border-[#e0e0e0] px-[1rem] py-[1rem] rounded-[16px] flex-[.75] w-full'>
+      Please log In First To View the Feed
+      </div>
+    )
+  }
+
+  
 
   return (
-    <div className="overflow-auto custom-scrollbar-hide h-[calc(100vh-145px)]">
+    <div className={`${className} custom-scrollbar-hide h-[calc(100vh-80px)]`}>
       <div className="space-y-4">
-        {allPosts.map((post, index) => (
+        {
+         AllPosts.length > 0 && 
+        AllPosts.map((post, index) => (
           <PostCard
             key={index}
-            user={post.user}
-            postContent={post.postContent}
+            user={post.userId}
+            desc={post.description}
+            budget={post.BudgetPerPerson}
+            TravelMonth={post.TravelMonth}
+            destination={post.destination}
+            totalPersons={post.totalPersons}
             stats={post.stats}
           />
         ))}
