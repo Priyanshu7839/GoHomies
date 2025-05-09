@@ -1,9 +1,14 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 
 .header_carousel .swiper-slide{
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+}
+.poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
 .header_carousel .swiper-pagination {
