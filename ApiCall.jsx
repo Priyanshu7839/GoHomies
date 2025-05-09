@@ -76,3 +76,17 @@ export const FetchPost = async() => {
         return error.response
     }
 }
+
+export const PostImages = async(destination)=> {
+    const destinations = destination + " " + "tourism"
+    console.log(destinations)
+    try {
+        const response = await axios.get(`https://api.unsplash.com/search/photos?query=${destinations}&client_id=3StF_Gofq_OG9yN9Wuq4-RHJM-b7jh89sBJpql5fOS0`);
+       
+        return response
+
+    } catch (error) {
+        console.log(error)
+        return error.response
+    }
+}
