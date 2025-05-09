@@ -1,6 +1,7 @@
 // import React,{useRef} from 'react'
-import HeaderBannerNew1 from "../../assets/HeaderImage.jpg";
-import HeaderBannerNew2 from "../../assets/HeaderImage1.jpg";
+import HeaderBannerNew1 from "../../assets/HeaderBannerImage1.jpg";
+import HeaderBannerNew2 from "../../assets/HeaderBannerImage2.jpg";
+import HeaderBannerNew3 from "../../assets/HeaderBannerImage3.jpg";
 
 import React, { useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -16,6 +17,11 @@ const images = [
   {
     src: HeaderBannerNew2,
     title: "Manali",
+    desc: "Nestled in Himachal Pradesh, Manali is a charming hill station famous for snow-capped mountains, adventure sports, scenic valleys, and a cool, refreshing climate.",
+  },
+  {
+    src: HeaderBannerNew3,
+    title: "Jhansi",
     desc: "Nestled in Himachal Pradesh, Manali is a charming hill station famous for snow-capped mountains, adventure sports, scenic valleys, and a cool, refreshing climate.",
   },
 ];
@@ -58,10 +64,10 @@ const Header = () => {
           {images.map((item, index) => (
             <div
               key={index}
-              className="min-w-full h-[calc(100vh-160px)] bg-cover bg-center flex items-center justify-start"
+              className="min-w-full h-[calc(100vh-160px)] bg-cover bg-center flex items-end justify-start"
               style={{ backgroundImage: `url(${item.src})` }}
             >
-              <div className=" p-6 rounded-xl flex flex-col items-start gap-4 left-10 z-10 text-white max-w-xl text-left m-10">
+              <div className=" p-6 rounded-xl  flex flex-col items-start gap-2 left-10 z-10 text-white max-w-xl text-left m-10">
                 <div className="text-[18px] text-[#f555a7]">
                   #{index + 1} Spotlight
                 </div>
@@ -78,7 +84,7 @@ const Header = () => {
         </div>
 
         {/* Gradient Fade at Bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fff] to-transparent z-10 " />
+        {/* <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fff] to-transparent z-10 " /> */}
 
         {/* Navigation Buttons */}
         <div className="flex flex-col absolute bottom-8 right-8 gap-2 z-20">

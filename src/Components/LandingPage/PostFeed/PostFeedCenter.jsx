@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import PostCard from "../../Feed/PostCard";
 import mockPosts from "../../Feed/mockPost";
 import { FetchPost } from "../../../../ApiCall";
@@ -25,14 +25,13 @@ const PostFeedCenter = ({className}) => {
   
     fetchData();
   }, []);
-  
 
-
-
+  const [BlogOrPost,setBlogOrPost] = useState('Posts')
 
 
 
   const AllPosts = useSelector((state)=>state.AllPosts);
+
   if(responseShow){
     return(
       <div  className='border-[1px] border-[#e0e0e0] px-[1rem] py-[1rem] rounded-[16px] flex-[.75] w-full'>
@@ -41,15 +40,37 @@ const PostFeedCenter = ({className}) => {
     )
   }
 
-  
+
 
   return (
-    <div className={`${className} custom-scrollbar-hide h-[calc(100vh-80px)]`}>
+    <div className={`${className} custom-scrollbar-hide h-[calc(100vh-80px)] flex  flex-col gap-4  ` }>
+      <div className="w-full  p-[.25rem] h-[73px] rounded-3xl flex items-center justify-between border border-[#d7d7d8] bg-white">
+        <div className={`w-[49%] text-center py-[.5rem]  rounded-3xl relative overflow-hidden cursor-pointer
+          
+          `}
+          onClick={()=>{setBlogOrPost('Posts')}}
+          >
+            <h1 className="relative z-[200]"> Posts</h1>
+         
+
+            <div className={` h-full bg-[#0b85ff] absolute top-0 z-[100] transition-all duration-200 ${BlogOrPost==='Posts' ?'w-[100%]':'w-[0%]'}`}></div>
+        </div>
+        <div className={`w-[49%] text-center rounded-3xl py-[.5rem] relative overflow-hidden  cursor-pointer
+          
+          `}
+          onClick={()=>{setBlogOrPost('Blogs')}}
+          >
+          <h1 className="relative z-[200]"> Blogs</h1>
+          <div className={` h-full bg-[#0b85ff]  absolute top-0 z-[100] transition-all duration-200 ${BlogOrPost==='Blogs' ?'w-[100%]':'w-[0%]'}`}></div>
+
+        </div>
+      </div>
       <div className="space-y-4">
         {
          AllPosts.length > 0 && 
         AllPosts.map((post, index) => (
           <PostCard
+        
             key={index}
             user={post.userId}
             desc={post.description}

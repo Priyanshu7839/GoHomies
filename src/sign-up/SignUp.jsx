@@ -191,11 +191,11 @@ export default function SignUp(props) {
       return;
     }
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   title: data.get('title'),
-    //   designation: data.get('designation'),
-    //   about: data.get('about')
-    // });
+    console.log({
+      title: data.get('title'),
+      designation: data.get('designation'),
+      about: data.get('about'),UserEmail
+    });
 
  
     const title = data.get('title')
@@ -205,15 +205,15 @@ export default function SignUp(props) {
     const response = await CompleteUserProfile(UserEmail,title,designation,about);
     console.log(response);
 
+    if(response.data.msg ==='Error updating user'){
+      setPasswordErrorMessage('Error updating user')
+    }
+
     if(response.data.msg ==='User Updated Successfully'){
       setPasswordErrorMessage('User Profile Updated')
       navigate('/signin')
       
     }
-
-
-
-
 
   
   };

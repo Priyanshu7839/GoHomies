@@ -1,11 +1,14 @@
 import React from 'react'
 import { Navbar } from '../Components'
 import { Outlet } from 'react-router'
+import AppAppBar from '../AppAppBar/AppAppBar'
 
 const MainLayout = () => {
   return (
     <div>
-        <Navbar/>
+        {/* <Navbar/> */}
+        
+        <AppAppBar/>
         <Outlet/>
     </div>
   )

@@ -23,10 +23,10 @@ const PostFeedSection = () => {
 
 
   return (
-    <div className="flex relative  items-center justify-center w-full">
+    <div className="flex relative  items-center justify-center w-full h-full">
       <div
-        className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
-          flex flex-col  items-center justify-between gap-[2rem]  py-[4rem] 
+        className={`${breakpoint <= 1440 ? "w-[96%]" : "w-[1392px]"} 
+          flex flex-col  items-center justify-between gap-[2rem]  py-[4rem]
           `}
     >
 
@@ -39,15 +39,15 @@ const PostFeedSection = () => {
                         View Where Your <br /> buddies are going
                         </h1>
                         <p className="text-[1rem] text-center w-[70%] capitalize">
-                        View Feed and posts and get info about the latest trips and experience of homies
+                       The Top Travellers are on GoHomies
                         </p>
                 </div>
                 <div className="!relative top-[80px] w-full h-[100vh]">
-        <div ref={containerRef} className='!sticky !top-[80px] !h-[calc(100vh-80px)] flex items-start justify-between w-full gap-[1rem]'>
+        <div ref={containerRef} className='!sticky !top-[80px] !h-[calc(100vh-82px)] flex items-start justify-between w-full gap-[1rem]'>
             <PostFeedLeft/>
             <PostFeedCenter className={`${isStuck?'overflow-hidden':'overflow-auto'}`}/>
             <PostFeedRight/>
-            </div>
+        </div>
         
         </div>
       </div>

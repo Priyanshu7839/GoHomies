@@ -2,6 +2,7 @@ import React from 'react'
 import { Header, Navbar, PostCreationSection, PostFeedSection, TopPackages } from '../Components'
 import Feed from '../Components/Feed/Feed'
 import { useSelector } from 'react-redux'
+import AppAppBar from '../AppAppBar/AppAppBar'
 
 const LandingPage = () => {
 
@@ -10,8 +11,8 @@ const LandingPage = () => {
 
 
   return (
-    <div className='flex flex-col gap-0'>
-        <Navbar/>
+    <div className='flex flex-col'>
+        {/* <Navbar/> */}
         <Header/>
         <TopPackages/>
         <PostCreationSection/>

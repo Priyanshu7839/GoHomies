@@ -2,7 +2,9 @@ import React from 'react'
 
 const PostCard = ( props) => {
   return (
-    <div className={`max-w-[616px] sm:w-[616px] flex-shrink gap-[16px] rounded-3xl bg-white flex flex-col border border-[#d7d7d8] h-full max-h-fit pt-[16px]  `}>
+    <div className={`max-w-[616px] sm:w-[616px] flex-shrink gap-[16px] rounded-3xl bg-white flex flex-col border border-[#d7d7d8] h-full max-h-fit pt-[16px] 
+        
+    `}>
     <div className='px-[24px] flex  items-center'>
       <div className="pl-2 lg:pl-0 rounded-[20px] shrink-0">
        {props?.user?.profilePic &&

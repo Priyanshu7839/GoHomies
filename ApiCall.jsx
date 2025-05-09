@@ -34,9 +34,10 @@ export const UserSignUp = async(name,email,username,password)=>{
     }
 }
 
-export const CompleteUserProfile = async(title,designation,about) =>{
+export const CompleteUserProfile = async(userEmail,title,designation,about) =>{
     try {
         const response = await api.post('user/update',{
+            email:userEmail,
             title:title,
             designation:designation,
             about:about
@@ -47,7 +48,7 @@ export const CompleteUserProfile = async(title,designation,about) =>{
     }
 }
 
-export const CreatePost = async(destination,totalPersons,TravelMonth,BudgetPerPerson,description,userId) => {
+export const CreatePost = async(destination,totalPersons,TravelMonth,BudgetPerPerson,description) => {
     try {
         const response = await api.post('post/create',{
             destination:destination,

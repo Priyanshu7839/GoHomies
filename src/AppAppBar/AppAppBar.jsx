@@ -1,66 +1,65 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useScreenResizeValue } from "../../ScreenSizeFunction";
-import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import Cookies from 'js-cookie'
-import { setUserData } from "../../Store/UserDataSlice";
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import MenuItem from '@mui/material/MenuItem';
+import Drawer from '@mui/material/Drawer';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
+import { useNavigate } from 'react-router';
+// import Sitemark from './SitemarkIcon';
 
-const Navbar = () => {
-  const breakpoint = useScreenResizeValue();
-  const [isSticky, setIsSticky] = useState(false);
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  flexShrink: 0,
+  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
+  backdropFilter: 'blur(24px)',
+  border: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  backgroundColor: 'rgba(255,255,255,0)',
+  boxShadow: (theme.vars || theme).shadows[1],
+  padding: '8px 12px',
+  height:'54px'
+}));
 
-  const dispatch = useDispatch();
+export default function AppAppBar() {
+  const [open, setOpen] = React.useState(false);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY > 0) {
-  //       setIsSticky(true);
-  //     } else {
-  //       setIsSticky(false);
-  //     }
-  //   };
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
 
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   const navigate = useNavigate();
 
-  const userData = useSelector((state)=>state.UserData)
-
-  const Logout =()=>{
-    Cookies.remove('uid');
-    dispatch(setUserData({
-      name: '',
-      email: '',
-      username: '',
-      designation: '',
-      about: '',
-      title: '',
-      isAuthenticated: false,
-    }))
-  }
- 
 
   return (
-    <div
-      className={`flex items-center justify-center  w-full z-50 transition-all duration-500 fixed top-[100px] ease-in-out `}
+    <AppBar
+      position="fixed"
+      enableColorOnDark
+      sx={{
+        boxShadow: 0,
+        bgcolor: 'transparent',
+        backgroundImage: 'none',
+        mt: 'calc(var(--template-frame-height, 0px) + 10px)',
+      }}
     >
-      <div
-        className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
-            flex flex-col items-center justify-center  overflow-hidden  bg-[rgba(255,255,255,0)]  backdrop-blur-[24px] rounded-[12px] px-[1rem]
-            `}
-      >
-        <div className="w-full py-[1rem] flex items-center max-h-[54px] !justify-between gap-[1rem]  ">
-          <div className="flex flex-row gap-[16px] justify-between items-center">
-            <div className="flex items-center justify-center ">
-              <svg
+      <Container maxWidth="">
+        <StyledToolbar variant="dense" disableGutters>
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0, }}>
+          <svg
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.0"
                 width="100"
-                height="100"
+                height="80"
                 viewBox="0 0 1024 1024"
                 preserveAspectRatio="xMidYMid meet"
               >
@@ -76,70 +75,100 @@ const Navbar = () => {
                   <path d="M6365 4369 c-209 -9 -601 -34 -765 -49 -727 -67 -1422 -157 -1801 -234 -96 -20 -239 -47 -319 -61 -259 -46 -335 -73 -370 -129 -31 -52 -27 -101 14 -142 59 -59 120 -53 501 45 432 111 1065 213 1895 305 539 60 905 86 1485 107 285 10 359 9 545 -5 118 -9 255 -25 304 -36 134 -30 161 -27 185 17 16 30 -8 77 -50 98 -39 21 -178 51 -299 65 -254 29 -876 38 -1325 19z" />
                 </g>
               </svg>
-            </div>
-
-            <div>
-              <a
-                href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
-              >
-                Explore
-              </a>
-              <a
-                href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
-              >
-                Booking
-              </a>
-              <a
-                href=""
-                className="text-decoration-none px-[16px] text-[#d7d7d8] hover:text-[#7B7194] !text-[14px] !font-semibold whitespace-nowrap"
-              >
-                Blogs
-              </a>
-            </div>
-          
-          </div>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button variant="text" color="info" size="small">
+                Features
+              </Button>
+              <Button variant="text" color="info" size="small">
+                Testimonials
+              </Button>
+              <Button variant="text" color="info" size="small">
+                Highlights
+              </Button>
+              <Button variant="text" color="info" size="small">
+                Pricing
+              </Button>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                FAQ
+              </Button>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                Blog
+              </Button>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              gap: 1,
+              alignItems: 'center',
+            }}
+          >
+            <Button color="primary" variant="text" size="small">
+              Sign in
+            </Button>
+            <Button color="primary" variant="contained" size="small">
+              Sign up
+            </Button>
+          </Box>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
            
-          <div>
-           {!userData.isAuthenticated &&
-            <div className="flex flex-row items-center justify-center gap-[12px] max-w-[200px]">
-              <div className=" cursor-pointer whitespace-nowrap h-full text-[#d7d7d8]  w-full">
-                Sign Up
-              </div>
-              <div
-              onClick={()=>{
-                  navigate('/signin')
+            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="top"
+              open={open}
+              onClose={toggleDrawer(false)}
+              PaperProps={{
+                sx: {
+                  top: 'var(--template-frame-height, 0px)',
+                },
               }}
-              className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.5rem] rounded-full text-[#ffffff]">
-                Log In
-              </div>
-            </div>}
+            >
+              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <IconButton onClick={toggleDrawer(false)}>
+                    <CloseRoundedIcon />
+                  </IconButton>
+                </Box>
 
-            {
-              userData.isAuthenticated && 
-              <div className="flex items-center justify-center gap-[12px]">
-                <div className="font-medium text-[1rem] text-[#fff]">
-                {userData.name.split(' ')[0]}
-              </div>
-              
-              <div
-              onClick={()=>{
-                  Logout()
-                  navigate('/signin')
-              }}
-              className=" cursor-pointer whitespace-nowrap bg-[#6B8E23]  items-center flex h-full w-full px-[24px] py-[.35rem] rounded-full text-[#ffffff]"
-             
-              >
-               LogOut
-              </div>
-              </div>
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+                <MenuItem>Explore</MenuItem>
+                <MenuItem>Testimonials</MenuItem>
+                <MenuItem>Pricing</MenuItem>
+                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Blog</MenuItem>
+                <Divider sx={{ my: 3 }} />
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth
+                  onClick={()=>{
+                    navigate('/signin')
+                  }}
+                  >
+                    Sign up
+                  </Button>
+                </MenuItem>
+                <MenuItem
+                 onClick={()=>{
+                  navigate('/signup')
+                  console.log('Hello')
+                }}
+                >
+                  <Button color="primary" variant="outlined" fullWidth
+                 
+                  >
+                    Sign in
+                  </Button>
+                </MenuItem>
+              </Box>
+            </Drawer>
+          </Box>
+        </StyledToolbar>
+      </Container>
+    </AppBar>
   );
-};
-
-export default Navbar;
+}
