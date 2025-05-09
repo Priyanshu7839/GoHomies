@@ -68,7 +68,7 @@ const Header = () => {
                 <div className="text-5xl font-bold mb-4">{item.title}</div>
                 <div className="mb-6 text-[16px]">{item.desc}</div>
                 <div>
-                  <button className="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full text-white">
+                  <button className="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full cursor-pointer text-white">
                     Explore Packages
                   </button>
                 </div>
@@ -83,13 +83,13 @@ const Header = () => {
         {/* Navigation Buttons */}
         <div className="flex flex-col absolute bottom-8 right-8 gap-2 z-20">
           <button
-            className="bg-black opacity-70 rounded-md p-2"
+            className="bg-black opacity-70 rounded-md p-2 cursor-pointer"
             onClick={handlePrev}
           >
             <ChevronLeft color="white" size={24} />
           </button>
           <button
-            className="bg-black opacity-70 rounded-md p-2"
+            className="bg-black opacity-70 rounded-md p-2 cursor-pointer"
             onClick={handleNext}
           >
             <ChevronRight color="white" size={24} />
