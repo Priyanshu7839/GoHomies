@@ -4,6 +4,7 @@ import { element } from "prop-types";
 import LandingPage from "../Pages/LandingPage";
 import SignIn from "../sign-in/SignIn";
 import SignUp from '../sign-up/SignUp';
+import UserProfile from "../Pages/UserProfilePage/UserProfile";
 
 const Routers = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const Routers = createBrowserRouter([
     {
         path:'signup',
         element:<SignUp/>
+    },
+    {
+        path:'/userprofile',
+        element:<UserProfile/>
     }
 ])
 
