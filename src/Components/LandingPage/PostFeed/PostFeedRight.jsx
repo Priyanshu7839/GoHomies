@@ -17,7 +17,7 @@ const PostFeedRight = () => {
               setContactUsModal(true);
             }} */
             >
-              <div className="font-display font-medium text-sm rounded-xl py-[12px] px-[32px]  bg-[#6B8E23] text-[#FFFFFF] border border-[#6B8E23] w-full text-center cursor-pointer">
+              <div className="font-display font-medium text-sm rounded-xl py-[12px] px-[32px]  bg-[#fff] text-[#6e7169] border border-[#6e7169] w-full text-center cursor-pointer">
 
                 Contact us
 

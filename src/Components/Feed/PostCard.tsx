@@ -108,14 +108,14 @@ const PostCard = (props) => {
   };
 
   const [images,setImages]=useState([]);
-  useEffect(()=>{
-      const Postimages = async() => {
-        const response = await PostImages(props.destination);
-        console.log(response.data.results)
-        setImages(response.data.results);
-      }
-      Postimages()
-    },[])
+  // useEffect(()=>{
+  //     const Postimages = async() => {
+  //       const response = await PostImages(props.destination);
+  //       console.log(response)
+  //       setImages(response.data.results);
+  //     }
+  //     Postimages()
+  //   },[])
     
   return (
     <div
