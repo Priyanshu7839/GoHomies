@@ -51,7 +51,8 @@ const Header = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="relative h-[calc(100vh-160px)] px-0 ">
+    <div className="p-[2rem]  mt-[60px] h-[calc(95vh-60px)]">
+      <div className="relative rounded-3xl overflow-hidden h-[calc(85vh-160px)] px-0">
       <div className="relative overflow-hidden bg-black">
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black opacity-40 z-5"></div>
@@ -64,7 +65,7 @@ const Header = () => {
           {images.map((item, index) => (
             <div
               key={index}
-              className="min-w-full h-[calc(100vh-160px)] bg-cover bg-center flex items-end justify-start"
+              className="min-w-full h-[calc(100vh-160px)] bg-cover bg-center flex items-start justify-start"
               style={{ backgroundImage: `url(${item.src})` }}
             >
               <div className=" p-6 rounded-xl  flex flex-col items-start gap-2 left-10 z-10 text-white max-w-xl text-left m-10">
@@ -102,6 +103,17 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+
+      </div>
+      <div className="w-[600px] h-[150px]  absolute top-[68%] left-[50%] translate-x-[-50%] rounded-3xl bg-white/30 backdrop-blur-2xl flex items-center justify-between p-[1rem]
+      font-[500] text-black drop-shadow-[2px_4px_5px_rgba(0,0,0,0.4)] border border-[#d7d7d8] 
+      "
+      >
+        <h1>Location</h1>
+        <h2>Best Travel Month</h2>
+        <h2>Best Travel Partner</h2>
+    </div>
     </div>
   );
 };

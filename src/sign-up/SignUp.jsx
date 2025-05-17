@@ -71,6 +71,8 @@ export default function SignUp(props) {
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   const [profileCompleteForm,setProfileCompleteForm] = React.useState(false);
   const [UserEmail,setUserEmail] = React.useState('');
+  const [signingUp,setSigningUp] = React.useState(false)
+  const [completing,setcompleting] = React.useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -132,7 +134,7 @@ export default function SignUp(props) {
 
     setUserEmail(email)
 
-
+setSigningUp(true)
     const response = await UserSignUp(name,email,username,password);
 
     if(response.data.msg==='User Already exists'){
@@ -143,6 +145,8 @@ export default function SignUp(props) {
       setPasswordErrorMessage(response.data.msg);
       setProfileCompleteForm(true)
     }
+
+    setSigningUp(false)
   };
 
   const validateInputs2 = () =>{
@@ -201,6 +205,7 @@ export default function SignUp(props) {
     const title = data.get('title')
     const designation = data.get('desgination')
     const about = data.get('about')
+    setcompleting(true)
 
     const response = await CompleteUserProfile(UserEmail,title,designation,about);
     console.log(response);
@@ -215,6 +220,8 @@ export default function SignUp(props) {
       
     }
 
+    setcompleting(false)
+
   
   };
 
@@ -224,7 +231,7 @@ export default function SignUp(props) {
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+      {/* <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} /> */}
       {!profileCompleteForm &&
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
@@ -286,17 +293,14 @@ export default function SignUp(props) {
                 color={passwordError ? 'error' : 'primary'}
               />
             </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive updates via email."
-            />
+          
             <Button
               type="submit"
               fullWidth
               variant="contained"
               onClick={validateInputs}
             >
-              Sign up
+              {signingUp ?'Signing up...':'Sign up'}
             </Button>
           </Box>
           <Divider>
@@ -311,20 +315,20 @@ export default function SignUp(props) {
             >
               Sign up with Google
             </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Facebook')}
-              startIcon={<FacebookIcon />}
-            >
-              Sign up with Facebook
-            </Button>
+           
             <Typography sx={{ textAlign: 'center' }}>
               Already have an account?{' '}
               <Link
-                href="/material-ui/getting-started/templates/sign-in/"
+              onClick={
+                ()=>{
+                  navigate('/signin')
+                }
+              }
+               
                 variant="body2"
-                sx={{ alignSelf: 'center' }}
+                sx={{ alignSelf: 'center',
+                  cursor:'pointer'
+                 }}
               >
                 Sign in
               </Link>
@@ -399,7 +403,9 @@ export default function SignUp(props) {
               type="button"
               fullWidth
               variant="outlined"
-              // onClick={validateInputs}
+              onClick={()=>{
+                navigate('/signin')
+              }}
 
             >
               Skip
@@ -410,7 +416,7 @@ export default function SignUp(props) {
               variant="contained"
               onClick={validateInputs2}
             >
-              Complete
+              {completing?"Completing...":"Complete"}
             </Button>
          
            

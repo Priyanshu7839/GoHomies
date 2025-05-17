@@ -35,37 +35,37 @@ const PostFeedLeft = () => {
 
   return (
     imagesLoaded && (
-      <div className=" flex-[.75]  h-full w-full flex flex-col justify-between items-between gap-[.5rem] relative">
-        <div className="absolute top-[20px] left-[60px] h-[108px] w-[108px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40">
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image1} alt="" className="object-cover w-full h-full" />
-         
-        </div>
-        <div className="absolute top-[150px] left-[60px] h-[180px] w-[180px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40" >
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image2} alt="" className="object-cover w-full h-full" />
-         
-        </div>
-        <div className="absolute top-[360px] left-[120px] h-[144px] w-[144px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40">
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image3} alt="" className="object-cover w-full h-full" />
-         
-        </div>
-        <div className="absolute top-[360px] left-[-80px] h-[180px] w-[180px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40">
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image4} alt="" className="object-cover w-full h-full" />
-         
-        </div>
-        <div className="absolute top-[120px] left-[-80px] h-[108px] w-[108px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40">
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image5} alt="" className="object-cover w-full h-full" />
-         
-        </div>
-        <div className="absolute top-[600px] left-[-80px] h-[144px] w-[144px] b-[linear-gradient(90deg,_hsla(221,_45%,_73%,_1)_0%,_hsla(220,_78%,_29%,_1)_100%)] border-[1px] border-[#e0e0e0] overflow-hidden rounded-[14px] opacity-40">
-          {/* <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)] group-hover:bg-[rgba(0,0,0,0.1)] z-10 transition-colors duration-500 pointer-events-none" /> */}
-          <img src={Image1} alt="" className="object-cover w-full h-full" />
-         
-        </div>
+      <div className=" flex-[.70]  h-full w-full flex flex-col justify-between items-between gap-[1rem] relative pb-[1rem]">
+
+          
+
+          <div className="h-full relative w-full border border-[#d7d7d8] overflow-hidden rounded-3xl poppins bg-white flex flex-col items-center ">
+                 <img src={Image1} alt="" className="object-cover w-full h-full"/>
+                <div className="bg-[rgba(0,0,0,0.2)] w-full h-full absolute top-0 left-0"/>
+
+              <div className="poppins text-white absolute bottom-10 left-5">
+                <h1 className="text-[1.5rem]">Kerala</h1>
+                <p>Gods own Country</p>
+              </div>
+
+
+          </div>
+          <div className="h-full relative w-full border border-[#d7d7d8] overflow-hidden rounded-3xl poppins bg-white flex flex-col items-center ">
+                 <img src={Image5} alt="" className="object-cover w-full h-full"/>
+                <div className="bg-[rgba(0,0,0,0.2)] w-full h-full absolute top-0 left-0"/>
+
+              <div className="poppins text-white absolute bottom-10 left-5">
+                <h1 className="text-[1.5rem]">Jhansi</h1>
+                <p>God hates this</p>
+              </div>
+          </div>
+
+        
+       
+              
+               
+                
+        
       </div>
     )
   );

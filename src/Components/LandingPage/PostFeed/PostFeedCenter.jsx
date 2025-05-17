@@ -45,7 +45,7 @@ const PostFeedCenter = ({ className }) => {
           `}
           onClick={()=>{setBlogOrPost('Posts')}}
           >
-            <h1 className="relative z-[200]"> Posts</h1>
+            <h1 className={`relative z-[200] ${BlogOrPost==='Posts' && 'text-white'}`}>Posts</h1>
          
 
             <div className={` h-full bg-[#0b85ff] absolute top-0 z-[100] transition-all duration-200 ${BlogOrPost==='Posts' ?'w-[100%]':'w-[0%]'}`}></div>
@@ -55,7 +55,8 @@ const PostFeedCenter = ({ className }) => {
           `}
           onClick={()=>{setBlogOrPost('Blogs')}}
           >
-          <h1 className="relative z-[200]"> Blogs</h1>
+          <h1 className={`relative z-[200] ${BlogOrPost==='Blogs' && 'text-white'}`}>Blogs</h1>
+
           <div className={` h-full bg-[#0b85ff]  absolute top-0 z-[100] transition-all duration-200 ${BlogOrPost==='Blogs' ?'w-[100%]':'w-[0%]'}`}></div>
 
         </div>

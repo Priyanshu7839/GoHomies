@@ -13,6 +13,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../Store/UserDataSlice';
+import Cookies from 'js-cookie'
+
 // import Sitemark from './SitemarkIcon';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -39,6 +43,23 @@ export default function AppAppBar() {
 
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+   const userData = useSelector((state)=>state.UserData)
+
+    const Logout =()=>{
+       Cookies.remove('uid');
+       dispatch(setUserData({
+         name: '',
+         email: '',
+         username: '',
+         designation: '',
+         about: '',
+         title: '',
+         isAuthenticated: false,
+       }))
+     }
+    
 
 
   return (
@@ -76,20 +97,18 @@ export default function AppAppBar() {
                 </g>
               </svg>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              
               <Button variant="text" color="info" size="small">
-                Features
+                Contact
               </Button>
               <Button variant="text" color="info" size="small">
-                Testimonials
+                About
               </Button>
               <Button variant="text" color="info" size="small">
-                Highlights
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Pricing
+                Create
               </Button>
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                FAQ
+                Posts
               </Button>
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 Blog
@@ -103,12 +122,41 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
+           {!userData.isAuthenticated &&
+            <>
+             <Button color="primary" variant="text" size="small"
+            onClick={()=>{
+              navigate('/signin')
+            }}
+            >
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small">
+            <Button color="primary" variant="contained" size="small"
+              onClick={()=>{
+              navigate('/signup')
+            }}
+            >
               Sign up
+            </Button></>
+           }
+           
+
+           {
+            userData.isAuthenticated &&
+             <>
+             <Button color="primary" variant="text" size="small"
+           
+            >
+              {userData.name.split(" ")[0]}
             </Button>
+            <Button color="primary" variant="contained" size="small"
+              onClick={()=>{
+             Logout()
+            }}
+            >
+              Logout
+            </Button></>
+           }
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
            

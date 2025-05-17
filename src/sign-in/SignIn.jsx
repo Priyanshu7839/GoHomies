@@ -70,6 +70,7 @@ export default function SignIn(props) {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [signingIn,setsigningIn] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -95,6 +96,7 @@ export default function SignIn(props) {
     // });
     const email= data.get('email')
     const password=data.get('password')
+    setsigningIn(true);
 
    const response = await UserSignIn(email,password)
 
@@ -119,6 +121,8 @@ export default function SignIn(props) {
       setPasswordErrorMessage(response.data.msg)
      }
    }
+
+   setsigningIn(false)
     
   };
 
@@ -153,7 +157,7 @@ export default function SignIn(props) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
-        <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+        {/* <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} /> */}
         <Card variant="outlined">
           {/* <SitemarkIcon /> */}
           <Typography
@@ -219,7 +223,7 @@ export default function SignIn(props) {
               variant="contained"
               onClick={validateInputs}
             >
-              Sign in
+             {signingIn?'Signing In...':'Sign in' }
             </Button>
             <Link
               component="button"
@@ -241,20 +245,19 @@ export default function SignIn(props) {
             >
               Sign in with Google
             </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign in with Facebook')}
-              startIcon={<FacebookIcon />}
-            >
-              Sign in with Facebook
-            </Button>
+          
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
               <Link
-                href="/material-ui/getting-started/templates/sign-in/"
+
                 variant="body2"
-                sx={{ alignSelf: 'center' }}
+                sx={{ alignSelf: 'center',
+                  cursor:'pointer'
+                 }}
+
+                onClick={()=>{
+                  navigate('/signup')
+                }}
               >
                 Sign up
               </Link>

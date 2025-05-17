@@ -108,14 +108,14 @@ const PostCard = (props) => {
   };
 
   const [images,setImages]=useState([]);
-  // useEffect(()=>{
-  //     const Postimages = async() => {
-  //       const response = await PostImages(props.destination);
-  //       console.log(response)
-  //       setImages(response.data.results);
-  //     }
-  //     Postimages()
-  //   },[])
+  useEffect(()=>{
+      const Postimages = async() => {
+        const response = await PostImages(props.destination);
+        console.log(response)
+        setImages(response.data.results);
+      }
+      Postimages()
+    },[])
     
   return (
     <div
@@ -242,7 +242,7 @@ const PostCard = (props) => {
               {images.map((img, index) => (
                 <div key={index} className="keen-slider__slide w-full">
                   <img
-                    src={img.urls.small}
+                    src={img.urls.raw}
                     alt={`Trip image ${index + 1}`}
                     className="w-full h-full max-h-70 object-cover rounded-xl"
                   />

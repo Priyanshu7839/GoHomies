@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react'
 import { useScreenResizeValue } from '../../../ScreenSizeFunction'
 import {PostFeedLeft,PostFeedRight,PostFeedCenter} from '../../index'
+import Image1 from '../../../assets/6.jpg'
 
 const PostFeedSection = () => {
 
@@ -23,14 +24,18 @@ const PostFeedSection = () => {
 
 
   return (
-    <div className="flex relative  items-center justify-center w-full h-full">
+    <div className="flex relative  items-center justify-center w-full h-full ">
+      <div className='bg-[#FAFAFA]  w-full h-full absolute top-0'>
+          {/* <img src={Image1} alt="" className='w-full h-full' /> */}
+      </div>
+      {/* <div className='w-full h-full bg-[#000] opacity-20 absolute top-0 '></div> */}
       <div
         className={`${breakpoint <= 1440 ? "w-[96%]" : "w-[1392px]"} 
           flex flex-col  items-center justify-between gap-[2rem]  py-[4rem]
           `}
     >
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center z-300 text-black">
                     <span className="px-[2rem] py-[.25rem] rounded-full bg-[#6B8E23] text-white">
                           Go With the Homie
                         </span>
@@ -45,7 +50,7 @@ const PostFeedSection = () => {
                 <div className="!relative top-[80px] w-full h-[100vh]">
         <div ref={containerRef} className='!sticky !top-[80px] !h-[calc(100vh-82px)] flex items-start justify-between w-full gap-[1rem]'>
             <PostFeedLeft/>
-            <PostFeedCenter className={`${isStuck?'overflow-hidden':'overflow-auto'}`}/>
+            <PostFeedCenter className={`${isStuck?'overflow-hidden z-400':'overflow-auto z-400'}`}/>
             <PostFeedRight/>
         </div>
         

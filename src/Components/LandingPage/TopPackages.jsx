@@ -66,10 +66,11 @@ const TopPackages = () => {
   ]
 
   return imagesLoaded && (
-    <div className="flex  items-center justify-center overflow-hidden w-full">
+    <div className="flex  items-center justify-center overflow-hidden w-full py-[2rem]">
       <div
-        className={`${breakpoint <= 1440 ? "w-[84%]" : "w-[1200px]"} 
-            flex flex-col items-center justify-center gap-[2rem]  py-[3rem]     overflow-hidden 
+        className={`${breakpoint <= 1440 ? "w-[96%]" : "w-[1392px]"} 
+            flex flex-col items-center justify-center gap-[2rem] overflow-hidden 
+            
             `}
       >
                 <div className="flex flex-col items-center justify-center">
