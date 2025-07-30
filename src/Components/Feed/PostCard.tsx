@@ -4,6 +4,7 @@ import timeAgo from "../TimeStamp/timeAgo";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { PostImages } from "../../../ApiCall";
+import axios from "axios";
 
 const PostCard = (props) => {
   const {
@@ -55,6 +56,8 @@ const PostCard = (props) => {
       console.error("Error toggling opt status:", error);
     }
   };
+
+  console.log("userid",props.user);
 
   // Autoplay plugin for Keen Slider v6
   function AutoplayPlugin(slider) {
@@ -108,14 +111,37 @@ const PostCard = (props) => {
   };
 
   const [images,setImages]=useState([]);
-  useEffect(()=>{
-      const Postimages = async() => {
-        const response = await PostImages(props.destination);
-        console.log(response)
-        setImages(response.data.results);
-      }
-      Postimages()
-    },[])
+  // useEffect(()=>{
+  //     const Postimages = async() => {
+  //       const response = await PostImages(props.destination);
+  //       console.log(response)
+  //       setImages(response.data.results);
+  //     }
+  //     Postimages()
+  //   },[])
+const [liked, setLiked] = useState(false); // you may want to initialize this from props
+const [loading, setLoading] = useState(false);
+const [lCount, setLCount] = useState(props.likeCount); // initialize from props
+
+const handleLikeToggle = async () => {
+  console.log("Liking postId:", props?.postId); // check the exact ID
+  try {
+    setLoading(true);
+
+    const url = `https://gohomiesbackend.onrender.com/post/${liked ? "unlike" : "like"}/${props?.postId}`;
+    const response = await axios.post(url, {}, { withCredentials: true });
+
+    if (response.status === 200 && response.data) {
+      setLiked(!liked);
+      setLCount(response.data.likeCount); // ✅ update like count from backend response
+    }
+  } catch (error) {
+    console.error("Error toggling like:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
     
   return (
     <div
@@ -270,6 +296,7 @@ const PostCard = (props) => {
         <div className="flex justify-between border-t border-b border-[#d7d7d8]">
           <div className="px-6 py-3 flex items-center gap-3">
             <p className="flex gap-2 items-center justify-center">
+              <p className="text-[12px]">{lCount}</p>
               <svg
                 width="16"
                 height="16"
@@ -293,7 +320,6 @@ const PostCard = (props) => {
                   fill="#FFFFFF"
                 ></path>
               </svg>
-              <p className="text-[12px]"></p>
             </p>
             <p className="text-[12px]">•</p>
             <p>Comments</p>
@@ -317,7 +343,10 @@ const PostCard = (props) => {
           </div>
         </div>
         <div className="flex justify-center false  max-h-[56px] gap-[8px] items-center p-[8px]">
-          <button className="flex flex-1 gap-[6px] max-w-[192px] xxl:w-[144px] h-[40px] text-center justify-center lg:flex-row flex-col items-center py-[8px] hover:bg-[#d7d7d8] rounded-md ">
+          <button className="flex flex-1 gap-[6px] max-w-[192px] xxl:w-[144px] h-[40px] text-center justify-center lg:flex-row flex-col items-center py-[8px] hover:bg-[#d7d7d8] rounded-md "
+          onClick={handleLikeToggle}
+          disabled={loading}
+          >
             <p className="text-[#57585c]">
               <svg
                 width="24"
