@@ -76,6 +76,8 @@ const PostFeedCenter = ({ className }) => {
               time={post.createdAt}
               initialOptedIn={post.interested_persons.includes(post.userId)}
               initialOptCount={post.interested_persons.length}
+              likedPerson={post.likedBy}
+              likeCount={post.likeCount}
             />
           ))}
       </div>
