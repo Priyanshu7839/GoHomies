@@ -5,6 +5,8 @@ import LandingPage from "../Pages/LandingPage";
 import SignIn from "../sign-in/SignIn";
 import SignUp from '../sign-up/SignUp';
 import UserProfile from "../Pages/UserProfilePage/UserProfile";
+import AboutUs from "../Pages/AboutUsPage/AboutUs";
+import ContactUs from "../Pages/ContactUsPage/ContactUs";
 
 const Routers = createBrowserRouter([
     {
@@ -28,6 +30,14 @@ const Routers = createBrowserRouter([
     {
         path:'/userprofile',
         element:<UserProfile/>
+    },
+    {
+        path: '/about_us',
+        element: <AboutUs/>
+    },
+    {
+        path: '/contact_us',
+        element: <ContactUs/>
     }
 ])
 

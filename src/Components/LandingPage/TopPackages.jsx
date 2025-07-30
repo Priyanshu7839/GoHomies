@@ -79,7 +79,7 @@ const TopPackages = () => {
                         </span>
                         <h1 className="text-[3rem] text-center capitalize font-semibold">
                         {" "}
-                        Discover what top <br /> platforms has to offer you
+                        Discover what top <br /> platforms has to offer you 
                         </h1>
                         <p className="text-[1rem] text-center w-[70%]">
                         Get the top trending packages from top package companies to you
